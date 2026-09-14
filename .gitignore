@@ -1,0 +1,53 @@
+# Local agent/workspace metadata
+.agents/
+.codex/
+
+# Local source/reference inputs that must never be pushed from this repo
+IntegrationServices/
+Clearing.sql
+Publicacion.sql
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+*.temp
+~$*
+
+# Logs and local diagnostics
+*.log
+logs/
+Logs/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Archives and manual backups
+*.zip
+*.7z
+*.rar
+*.bak
+
+# Python/cache artifacts used by local analysis scripts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Node artifacts, in case documentation tooling is added later
+node_modules/
+dist/
+build/
+
+# Visual Studio/root-level build artifacts
+.vs/
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.suo
+*.rsuser

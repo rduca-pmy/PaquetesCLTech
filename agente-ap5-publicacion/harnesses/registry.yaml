@@ -1,0 +1,86 @@
+project: agente-ap5-publicacion
+scope:
+  repository_root: IntegrationServices
+  allowed_path: IntegrationServices/Publicacion
+  supporting_sources:
+    - Clearing.sql
+    - Publicacion.sql
+  excluded_paths:
+    - IntegrationServices/*
+  exclusion_note: "Solo se analiza IntegrationServices/Publicacion; el resto del repositorio queda fuera de alcance en esta etapa."
+workflow:
+  current_phase: paquetes_publicacion
+  deferred_phase:
+    - cdc_pbp
+    - contribuciones_y_mensajeria
+harnesses:
+  - id: discovery
+    purpose: Inventariar paquetes y normalizar nombres.
+    inputs:
+      - Publicacion.dtproj
+      - "*.dtsx"
+      - Clearing.sql
+      - Publicacion.sql
+    outputs:
+      - catalogo_paquetes
+      - grupos_funcionales
+  - id: extraction
+    purpose: Extraer evidencia tecnica desde paquetes SSIS.
+    inputs:
+      - paquete_dtsx
+    outputs:
+      - sql_commands
+      - stored_procedures
+      - tablas_destino
+      - tablas_origen
+      - tareas_relevantes
+  - id: mapping
+    purpose: Construir relaciones paquete-tabla-mecanismo.
+    inputs:
+      - evidencia_extraida
+    outputs:
+      - relaciones_sincronizacion
+      - dominios_funcionales
+  - id: classification
+    purpose: Distinguir sincronizaciones de tablas locales AP5.
+    inputs:
+      - relaciones_sincronizacion
+    outputs:
+      - tablas_sincronizadas
+      - tablas_locales
+      - pendientes_validacion
+  - id: documentation
+    purpose: Generar fichas Markdown uniformes.
+    inputs:
+      - relacion_validada
+      - template_ficha
+    outputs:
+      - ficha_documental
+  - id: qa
+    purpose: Validar consistencia, trazabilidad y confianza.
+    inputs:
+      - ficha_documental
+    outputs:
+      - ficha_aprobada
+      - observaciones
+  - id: cdc_inventory
+    purpose: Inventariar funciones del esquema cdc en Clearing.
+    inputs:
+      - Clearing.sql
+    outputs:
+      - catalogo_funciones_cdc
+      - agrupacion_por_esquema
+  - id: cdc_mapping
+    purpose: Relacionar funciones CDC con tablas y dominios de AP5.
+    inputs:
+      - catalogo_funciones_cdc
+      - matrices_ap5
+      - fichas_previas
+    outputs:
+      - relaciones_cdc_ap5
+      - casos_ambiguos_cdc
+quality_gates:
+  - Toda ficha debe nombrar al menos un paquete fuente.
+  - Toda ficha debe citar al menos una evidencia tecnica.
+  - Toda inferencia debe estar marcada explicitamente.
+  - Si se documenta CDC, debe citar la funcion exacta y el nivel de confianza del mapeo.

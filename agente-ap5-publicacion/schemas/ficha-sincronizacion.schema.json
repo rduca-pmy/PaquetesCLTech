@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FichaSincronizacionAP5",
+  "type": "object",
+  "required": [
+    "tabla_destino",
+    "clasificacion",
+    "nivel_confianza",
+    "paquetes",
+    "mecanismos",
+    "evidencias"
+  ],
+  "properties": {
+    "tabla_destino": {
+      "type": "string"
+    },
+    "esquema_destino": {
+      "type": "string"
+    },
+    "clasificacion": {
+      "type": "string",
+      "enum": [
+        "sincronizada",
+        "local_ap5",
+        "pendiente_validacion"
+      ]
+    },
+    "nivel_confianza": {
+      "type": "string",
+      "enum": [
+        "alta",
+        "media",
+        "baja"
+      ]
+    },
+    "dominio_funcional": {
+      "type": "string"
+    },
+    "paquetes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "mecanismos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "stored_procedures": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "origenes_clearing": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidencias": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "paquete",
+          "tipo",
+          "detalle"
+        ],
+        "properties": {
+          "paquete": {
+            "type": "string"
+          },
+          "tarea": {
+            "type": "string"
+          },
+          "tipo": {
+            "type": "string"
+          },
+          "detalle": {
+            "type": "string"
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "hechos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "inferencias": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dudas_abiertas": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}
