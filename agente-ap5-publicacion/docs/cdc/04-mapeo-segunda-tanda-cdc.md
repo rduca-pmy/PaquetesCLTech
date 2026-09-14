@@ -14,8 +14,8 @@ Esta segunda tanda cruza funciones CDC de `Clearing.sql` contra tablas, procedim
 ## Resumen
 
 - Funciones CDC analizadas: `21`
-- Mapeos directos: `7`
-- Mapeos probables: `13`
+- Mapeos directos: `8`
+- Mapeos probables: `12`
 - Mapeos ambiguos: `1`
 - Sin destino AP5 identificado: `0`
 - Fichas CDC generadas para esta tanda: `21`
