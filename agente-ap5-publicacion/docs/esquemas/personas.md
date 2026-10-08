@@ -28,6 +28,8 @@ Documentar el esquema `Personas` de AP5 y responder, en esta primera version:
   - `Personas_SociedadDepositaria.dtsx`
   - `Personas_Usuario.dtsx`
   - `Personas_UsuarioMiPortafolio.dtsx`
+
+
 - Paquetes con evidencia util pero fuera de `dtproj`:
   - `Personas_ArchivoPublicacion.dtsx`
   - `Personas_CuentaRegistroCoTitularUpdate.dtsx`
@@ -35,7 +37,7 @@ Documentar el esquema `Personas` de AP5 y responder, en esta primera version:
 
 ## Totales
 
-- Tablas del esquema `Personas` en `Publicacion.sql`: `42`
+- Tablas del esquema `Personas` en `Publicacion.sql`: `44`
 - Tablas con sincronizacion explicita observada en SSIS: `35`
 - Tablas sin evidencia observada en los paquetes relevados: `7`
 
@@ -117,6 +119,8 @@ El patron dominante observado es:
 | `Personas.UsuarioAcciones` | `Personas_Usuario.dtsx` | `DELETE`, `OpenRowset` |
 | `Personas.UsuarioMiPortafolio` | `Personas_UsuarioMiPortafolio.dtsx` | `OpenRowset` |
 | `Personas.UsuarioMultiRol` | `Personas_Usuario.dtsx` | `OpenRowset` |
+| `Personas.CompaniaSeguro` | `Personas_CompaniaSeguro.dtsx` | `OpenRowset`,`UPDATE`,`DELETE` |
+| `Personas.CuotaPartistaFondoComunInversionPublicacion` | `Personas_CuotaPartistaFondoComunInversion.dtsx` | `OpenRowset`,`UPDATE`,`DELETE` |
 
 ### Tablas sin evidencia observada en los paquetes relevados
 
